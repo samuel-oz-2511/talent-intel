@@ -662,7 +662,7 @@
   function unlock(lang) {
     var v = document.getElementById('code').value.trim();
     if (v.toUpperCase() === CODE) {
-      sessionStorage.setItem('sk_ok', '1');
+      localStorage.setItem('sk_ok', '1');
       document.getElementById('gate').style.display = 'none';
       document.getElementById('site').classList.add('open');
       setLang(lang);
@@ -681,17 +681,17 @@
     document.documentElement.dir = isHe ? 'rtl' : 'ltr';
     document.getElementById('sw-he').classList.toggle('on', isHe);
     document.getElementById('sw-en').classList.toggle('on', !isHe);
-    sessionStorage.setItem('sk_lang', lang);
+    localStorage.setItem('sk_lang', lang);
   }
 
   document.getElementById('code').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') unlock(sessionStorage.getItem('sk_lang') || 'he');
+    if (e.key === 'Enter') unlock(localStorage.getItem('sk_lang') || 'he');
   });
 
-  if (sessionStorage.getItem('sk_ok') === '1') {
+  if (localStorage.getItem('sk_ok') === '1') {
     document.getElementById('gate').style.display = 'none';
     document.getElementById('site').classList.add('open');
-    setLang(sessionStorage.getItem('sk_lang') || 'he');
+    setLang(localStorage.getItem('sk_lang') || 'he');
   }
 </script>
 </body>

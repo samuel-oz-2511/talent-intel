@@ -1,13 +1,13 @@
 (function () {
-  if (sessionStorage.getItem('sk_ok') !== '1') {
+  if (localStorage.getItem('sk_ok') !== '1') {
     location.replace('../index.html');
     return;
   }
   var params = new URLSearchParams(location.search);
-  var lang = params.get('lang') || sessionStorage.getItem('sk_lang') || 'he';
+  var lang = params.get('lang') || localStorage.getItem('sk_lang') || 'he';
 
   window.setLang = function (l) {
-    sessionStorage.setItem('sk_lang', l);
+    localStorage.setItem('sk_lang', l);
     var isHe = l === 'he';
     document.getElementById('c-he').style.display = isHe ? '' : 'none';
     document.getElementById('c-en').style.display = isHe ? 'none' : '';
