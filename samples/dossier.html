@@ -13,13 +13,13 @@
 <body>
 <div class="topbar">
   <span class="mark">BeSa</span>
-  <span class="what">Stage 3 · Candidate scoring dossier</span>
+  <span class="what">Stage 3 of 5 · Candidate scoring dossier</span>
   <a id="back-link" class="back" href="../index.html">חזרה לעמוד הראשי</a>
   <div class="lang-switch"><button id="sw-he" onclick="setLang('he')">עברית</button><button id="sw-en" onclick="setLang('en')">EN</button></div>
 </div>
 <div id="demo-note" class="demo-note"></div>
 
-<main id="c-he">
+<main id="c-he" style="display:none">
   <h1>תיק מועמד: ציון מבוסס ראיות</h1>
   <p class="sub">התוצר של שלב 3: כל ציון מגיע עם ההנמקה שלו, כל דגל עם רמת חומרה, וכל טענה בקורות החיים נבדקת מול לינקדאין.</p>
 
@@ -43,12 +43,12 @@
   <div class="panel">
     <h2>שישה ממדים · הנמקה מלאה</h2>
     <div class="dims">
-      <div class="dim-card"><div class="dh">התאמה לדרישות התפקיד <span class="n">8.8</span></div><div class="bar"><i style="width:88%"></i></div><p>11 מתוך 12 דרישות עם ראיה ישירה, כולל עומק ה-Python שאומת בשיחת ההיכרות. החסרה היחידה, Kafka, מוגדרת יתרון ולא חובה.</p></div>
+      <div class="dim-card"><div class="dh">התאמה לדרישות התפקיד <span class="n">8.8</span></div><div class="bar"><i style="width:88%"></i></div><p>11 מתוך 12 דרישות עם ראיה ישירה, כולל עומק ה-Python שאומת בשיחת ההיכרות. הפער היחיד, Kafka, מוגדר יתרון ולא חובה.</p></div>
       <div class="dim-card"><div class="dh">רלוונטיות לדומיין <span class="n">8.5</span></div><div class="bar"><i style="width:85%"></i></div><p>שלוש שנים על מערכת סטרימינג חיה עם דרישות latency דומות לאלה של הלקוח.</p></div>
       <div class="dim-card"><div class="dh">יציבות ועקביות <span class="n">7.5</span></div><div class="bar"><i style="width:75%"></i></div><p>קדנציות של 4 ו-3 שנים. מעבר אחד קצר, עם הסבר סביר שנבדק בשיחה.</p></div>
-      <div class="dim-card"><div class="dh">התאמת רמה <span class="n">8.0</span></div><div class="bar"><i style="width:80%"></i></div><p>בכירות 8 מול משרה 7. מוביל טכנית בלי תואר ניהולי, בדיוק פרופיל ה-IC המבוקש.</p></div>
+      <div class="dim-card"><div class="dh">התאמת רמה <span class="n">8.0</span></div><div class="bar"><i style="width:80%"></i></div><p>בכירות 8 מול משרה 7. מוביל טכנית בלי טייטל ניהולי, בדיוק פרופיל ה-IC המבוקש.</p></div>
       <div class="dim-card"><div class="dh">הצלבה בין מקורות <span class="n">9.0</span></div><div class="bar"><i style="width:90%"></i></div><p>קורות החיים, לינקדאין והרצאות פומביות מספרים סיפור אחד. אין פערי תאריכים.</p></div>
-      <div class="dim-card"><div class="dh">סיכון ניפוח AI <span class="n">18%</span></div><div class="bar"><i style="width:18%;background:#f79009"></i></div><p>ניסוח טבעי ולא סימטרי, פירוט טכני ספציפי. הסתברות נמוכה לקורות חיים מנופחים.</p></div>
+      <div class="dim-card"><div class="dh">סיכון ניפוח AI <span class="n" style="color:var(--warn)">18%</span></div><div class="bar"><i style="width:18%;background:#f79009"></i></div><p>ניסוח טבעי ולא אחיד, פירוט טכני ספציפי. הסתברות נמוכה לקורות חיים מנופחים.</p></div>
     </div>
   </div>
 
@@ -57,14 +57,14 @@
     <ul class="plain">
       <li>טענת ה-Kafka מופיעה ברשימת הכישורים אך לא באף תיאור תפקיד. לבקש דוגמה קונקרטית.</li>
       <li>המעבר הקצר ב-2022: לוודא שהגרסה בשיחה תואמת את ההסבר במסמכים.</li>
-      <li>קנה המידה אצל הלקוח קטן מהרגלו. לבדוק מוטיבציה לעומק, לא כמובן מאליו.</li>
+      <li>קנה המידה אצל הלקוח קטן ממה שהוא רגיל אליו. לבדוק מוטיבציה לעומק, לא כמובן מאליו.</li>
     </ul>
   </div>
 
   <div class="panel">
     <h2>תקציר למנהל</h2>
     <p>מועמד חזק עם ראיות ישירות לשלוש דרישות הסף. הפער היחיד הוא יתרון, לא חובה, וסיכון הניפוח נמוך. מומלץ לקדם לראיון טכני עם דגש על שתי נקודות הבדיקה הראשונות.</p>
-    <p class="dim" style="margin-top:10px">גרסת Brief למנהל: טבעת הציון, הדגלים והתקציר בעמוד אחד. הדוח המלא: ההנמקה המלאה לכל ממד, לצוות הגיוס.</p>
+    <p class="dim" style="margin-top:10px">גרסת Brief למנהל: מד הציון, הדגלים והתקציר בעמוד אחד. הדוח המלא: ההנמקה המלאה לכל ממד, לצוות הגיוס.</p>
   </div>
   <div class="nav-bottom">
     <a class="btn ghost" href="../index.html">חזרה לעמוד הראשי</a>
@@ -101,7 +101,7 @@
       <div class="dim-card"><div class="dh">Tenure and consistency <span class="n">7.5</span></div><div class="bar"><i style="width:75%"></i></div><p>Tenures of 4 and 3 years. One short stint, with a reasonable explanation verified on the call.</p></div>
       <div class="dim-card"><div class="dh">Level alignment <span class="n">8.0</span></div><div class="bar"><i style="width:80%"></i></div><p>Seniority 8 against a level 7 role. Leads technically without a management title, exactly the IC profile wanted.</p></div>
       <div class="dim-card"><div class="dh">Cross-source match <span class="n">9.0</span></div><div class="bar"><i style="width:90%"></i></div><p>CV, LinkedIn and public talks tell one story. No date gaps.</p></div>
-      <div class="dim-card"><div class="dh">AI inflation risk <span class="n">18%</span></div><div class="bar"><i style="width:18%;background:#f79009"></i></div><p>Natural, asymmetric writing with specific technical detail. Low probability of an AI-polished CV.</p></div>
+      <div class="dim-card"><div class="dh">AI inflation risk <span class="n" style="color:var(--warn)">18%</span></div><div class="bar"><i style="width:18%;background:#f79009"></i></div><p>Natural, uneven phrasing with specific technical detail. Low probability of an AI-inflated CV.</p></div>
     </div>
   </div>
 
@@ -117,7 +117,7 @@
   <div class="panel">
     <h2>Manager summary</h2>
     <p>A strong candidate with direct evidence for all three hard gates. The only gap is a nice-to-have, and inflation risk is low. Recommended to advance to a technical interview focused on the first two probes.</p>
-    <p class="dim" style="margin-top:10px">The Brief for the manager: ring, flags and summary on one page. The Full report: complete per-dimension rationale, for the recruiting team.</p>
+    <p class="dim" style="margin-top:10px">The Brief for the manager: score ring, flags and summary on one page. The Full report: complete per-dimension rationale, for the recruiting team.</p>
   </div>
   <div class="nav-bottom">
     <a class="btn ghost" href="../index.html">Back to main page</a>

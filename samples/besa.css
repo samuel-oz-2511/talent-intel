@@ -110,5 +110,15 @@ table.crit th { background: #fafbfc; border-top: none; font-weight: 700; }
 .btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: .92rem; padding: 12px 22px; border-radius: 10px; }
 .btn.primary { background: var(--accent); color: #fff; }
 .btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
-footer { text-align: center; color: #98a2b3; font-size: .78rem; padding: 26px 16px 40px; }
-@media (max-width: 640px) { .kv { grid-template-columns: 1fr; gap: 2px 0; } .kv dt { margin-top: 8px; } }
+footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 26px 16px 40px; }
+@media (max-width: 640px) {
+  .kv { grid-template-columns: 1fr; gap: 2px 0; }
+  .kv dt { margin-top: 8px; }
+  .topbar a.back { padding: 9px 16px; }
+  .topbar .lang-switch button { padding: 8px 14px; }
+}
+@media print {
+  .topbar, .demo-note, .nav-bottom { display: none; }
+  .panel, .q, .dim-card { break-inside: avoid; }
+  .score-ring, .score-ring span, .bar, .bar i, .pill, .quote, .gate-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

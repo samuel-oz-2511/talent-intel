@@ -188,6 +188,8 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 1.6rem; color: var(--accent); padding: 0 18px; font-weight: 800;
   }
+  [dir="rtl"] .flow-arrow { transform: rotate(90deg); }
+  [dir="ltr"] .flow-arrow { transform: rotate(-90deg); }
   .flow-note { margin-top: 16px; font-size: .92rem; color: var(--muted); max-width: 640px; }
 
   /* Pricing */
@@ -203,7 +205,7 @@
   .price-row:first-child { border-top: none; }
   .price-row .l { font-weight: 600; font-size: .97rem; max-width: 560px; }
   .price-row .l small { display: block; font-weight: 400; color: var(--muted); font-size: .86rem; margin-top: 2px; }
-  .price-row .v { font-weight: 800; font-size: 1.05rem; color: var(--accent); white-space: nowrap; }
+  .price-row .v { font-weight: 800; font-size: 1.05rem; color: var(--accent); }
   .price-cap {
     background: #f0fdf4; border-top: 1px solid #d1fadf; padding: 18px 24px;
     font-weight: 700; color: var(--good); font-size: 1rem;
@@ -214,10 +216,10 @@
   }
 
   /* Budget table */
-  .btable { width: 100%; border-collapse: collapse; margin-top: 26px; background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+  .btable { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 26px; background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
   .btable th, .btable td { padding: 14px 18px; text-align: start; font-size: .93rem; border-top: 1px solid var(--line); }
   .btable th { background: #fafbfc; font-weight: 700; border-top: none; }
-  .btable td.v { font-weight: 700; white-space: nowrap; }
+  .btable td.v { font-weight: 700; }
   .btable tr.net td { background: #f0fdf4; color: var(--good); font-weight: 700; }
 
   /* Champion */
@@ -259,12 +261,17 @@
     background: #fff; color: var(--accent); border: 1px solid var(--line);
     margin-inline-start: 10px;
   }
-  footer { text-align: center; padding: 40px 0 10px; color: #98a2b3; font-size: .8rem; }
+  footer { text-align: center; padding: 40px 0 10px; color: var(--muted); font-size: .8rem; }
 
   @media (max-width: 720px) {
-    .flow-arrow { width: 100%; padding: 6px 0; transform: rotate(90deg); }
+    [dir] .flow-arrow { width: 100%; padding: 6px 0; transform: none; }
     section { padding: 44px 0 8px; }
     .hero { padding: 56px 0 30px; }
+  }
+  @media print {
+    header.top { position: static; }
+    .pilot, .flow-block.ours, .step-marker, .kicker, .chip, .price-cap, .tick { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card, .step, .price-wrap, .ammo-item, .pilot { break-inside: avoid; }
   }
 </style>
 </head>
@@ -281,6 +288,7 @@
       <button class="alt" onclick="unlock('en')">Enter in English</button>
     </div>
     <div id="gate-err"></div>
+    <p style="margin-top:20px;font-size:.8rem;color:#7c8698;">לא קיבלתם קוד? · No code? <a href="mailto:samuel@skemper.co" style="color:#8ea8f5;">samuel@skemper.co</a></p>
   </div>
 </div>
 
@@ -311,7 +319,8 @@
   <section>
     <div class="kicker">הפער</div>
     <h2>מערך מיקור החוץ שלכם מצוין בהעסקה. הוא לא נבנה לאיתור ולהערכה של טאלנט פיתוח עם עומק AI</h2>
-    <p class="lead">שכר, תנאים, ניהול העסקה בקנה מידה גדול: את זה הספק הקיים עושה טוב, ואין סיבה לגעת בזה. אבל הוא לא נבנה כדי להבדיל בין מהנדס תוכנה חזק עם עומק AI אמיתי לבין קורות חיים מנוסחים היטב. וזה גם לא שירות בוטיק: שיחות עומק עם הצוות הטכני שלכם ושיח עם מועמדים בשפה של מהנדסים פשוט אינם חלק מהמודל. התוצאה מוכרת: פייפליין רועש, שורטליסטים חלשים, שעות ראיונות מבוזבזות של מנהלים מגייסים, זמן איוש ארוך וטעויות גיוס שמתגלות רק אחרי הקליטה.</p>
+    <p class="lead">שכר, תנאים, ניהול העסקה בקנה מידה גדול: את זה הספק הקיים עושה טוב, ואין סיבה לגעת בזה. אבל הוא לא נבנה כדי להבדיל בין מהנדס תוכנה חזק עם עומק AI אמיתי לבין קורות חיים מנוסחים היטב. והוא גם לא שירות בוטיק: שיחות עומק עם הצוות הטכני שלכם ושיח עם מועמדים בשפה של מהנדסים פשוט אינם חלק מהמודל.</p>
+    <p class="lead" style="margin-top:12px">התוצאה מוכרת: פייפליין רועש, שורטליסטים חלשים, שעות ראיונות מבוזבזות של מנהלים מגייסים, זמן איוש ארוך וטעויות גיוס שמתגלות רק אחרי הקליטה.</p>
   </section>
 
   <section>
@@ -329,11 +338,11 @@
     <div class="kicker">השירות</div>
     <h2>מאפיון ועד המלצה: חמישה שלבים, תוצר אחד ברור</h2>
     <div class="cards five">
-      <div class="card"><div class="num">1</div><h3>אפיון עמוק עם המנהל המגייס</h3><p>לא רק דרישות תפקיד: הצרכים של המנהל, הסקוואד והמחלקה, כולל אפיון ההתאמה התרבותית לצוות. הכול מתורגם לפרופיל חיפוש והערכה.</p><a class="sample-link" href="samples/intake.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ←</a></div>
-      <div class="card"><div class="num">2</div><h3>סורסינג מותאם לתפקיד</h3><p>איתור מהנדסי תוכנה עם עומק AI אמיתי: ערוצי האיתור הנכונים, והודעות פנייה שמדברות בשפה שלהם.</p><a class="sample-link" href="samples/sourcing.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ←</a></div>
-      <div class="card"><div class="num">3</div><h3>הערכה מובנית</h3><p>ציון מבוסס ראיות בשישה ממדים, כולל עקביות בין קורות החיים ללינקדאין וזיהוי קורות חיים שנופחו בעזרת AI. לא התאמת מילות מפתח.</p><a class="sample-link" href="samples/dossier.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ←</a></div>
-      <div class="card"><div class="num">4</div><h3>שורטליסט של 3 עד 5 פיינליסטים</h3><p>תיק מועמד לכל פיינליסט: חוזקות, סיכונים, ומה לבדוק לעומק בראיון. השורטליסט משקף את האפיון של הצוות שלכם, לא חיפוש גנרי.</p><a class="sample-link" href="samples/shortlist.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ←</a></div>
-      <div class="card"><div class="num">5</div><h3>הכנת ראיונות וליווי ההחלטה</h3><p>ערכת ראיון אישית לכל מועמד: שאלות, על מה להקשיב ודגלים אדומים. ניתוח תמלילי ראיונות והמלצה מנומקת: לקדם, לבדוק שוב, או לוותר.</p><a class="sample-link" href="samples/interview-kit.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ←</a></div>
+      <div class="card"><div class="num">1</div><h3>אפיון עמוק עם המנהל המגייס</h3><p>לא רק דרישות תפקיד: הצרכים של המנהל, הסקוואד והמחלקה, כולל אפיון ההתאמה התרבותית לצוות. הכול מתורגם לפרופיל חיפוש והערכה.</p><a class="sample-link" href="samples/intake.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ↗</a></div>
+      <div class="card"><div class="num">2</div><h3>סורסינג מותאם לתפקיד</h3><p>איתור מהנדסי תוכנה עם עומק AI אמיתי: ערוצי האיתור הנכונים, והודעות פנייה שמדברות בשפה שלהם.</p><a class="sample-link" href="samples/sourcing.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ↗</a></div>
+      <div class="card"><div class="num">3</div><h3>הערכה מובנית</h3><p>ציון מבוסס ראיות בשישה ממדים, כולל עקביות בין קורות החיים ללינקדאין וזיהוי קורות חיים שנופחו בעזרת AI. לא התאמת מילות מפתח.</p><a class="sample-link" href="samples/dossier.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ↗</a></div>
+      <div class="card"><div class="num">4</div><h3>שורטליסט של 3 עד 5 פיינליסטים</h3><p>תיק מועמד לכל פיינליסט: חוזקות, סיכונים, ומה לבדוק לעומק בראיון. השורטליסט משקף את האפיון של הצוות שלכם, לא חיפוש גנרי.</p><a class="sample-link" href="samples/shortlist.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ↗</a></div>
+      <div class="card"><div class="num">5</div><h3>הכנת ראיונות וליווי ההחלטה</h3><p>ערכת ראיון אישית לכל מועמד: שאלות, על מה להקשיב ודגלים אדומים. ניתוח תמלילי ראיונות והמלצה מנומקת: לקדם, לבדוק שוב, או לוותר.</p><a class="sample-link" href="samples/interview-kit.html?lang=he" target="_blank" rel="noopener">צפו בתוצר ↗</a></div>
     </div>
   </section>
 
@@ -388,7 +397,7 @@
     <div class="cards">
       <div class="card"><h3>תוצרים בפורמט ה-ATS הפנימי שלכם</h3><p>בלי אינטגרציה ובלי הרשאות: אני מתאים את התוצרים לתבניות הקיימות שלכם, כפי שאני עושה היום ללקוח הנוכחי עם סיכומי ראיון בפורמט ה-ATS שלו. הכול נקלט במערכת שלכם ונשאר שלכם.</p></div>
       <div class="card"><h3>תוצרים דו-לשוניים</h3><p>ערכות ראיון, תיקי מועמד ודוחות בעברית ובאנגלית: PDF תמציתי למנהל המגייס ודוח מלא לצוות הגיוס.</p></div>
-      <div class="card"><h3>הערכה עקבית ושקופה</h3><p>אותו מועמד מקבל את אותו ציון: רובריקה קבועה, משקולות מתכווננות לכל תפקיד, ושקיפות מלאה בכל שלב בהערכה.</p></div>
+      <div class="card"><h3>הערכה עקבית ושקופה</h3><p>אותו מועמד מקבל את אותו ציון: רובריקה קבועה, משקלים מתכווננים לכל תפקיד, ושקיפות מלאה בכל שלב בהערכה.</p></div>
     </div>
   </section>
 
@@ -455,7 +464,7 @@
     <p class="lead">השירות רץ על BeSa, מערכת הגיוס שבניתי ואני מפעיל היום בהתקשרות של שישה חודשים עם חברת AI אמריקאית-ישראלית: מסורסינג וסינון ראשוני של מועמדים, דרך שורטליסטים מדורגים עם תיקי מועמד, ערכות ראיון אישיות וניתוח תמלילים, ועד תוצרים בפורמט תבניות ה-ATS של הלקוח. השירות פועל תחת TechRuiter IL, מערך הגיוס שהקמתי ואני מפעיל לחברות הייטק ישראליות.</p>
     <div class="pilot">
       <h3>הצעת פיילוט</h3>
-      <p>שתי משרות, שישה שבועות, מדדי הצלחה שמוגדרים מראש. החלטה קטנה, מדידה, והפיכה.</p>
+      <p>שתי משרות, שישה שבועות, מדדי הצלחה שמוגדרים מראש. החלטה קטנה, מדידה והפיכה.</p>
       <ul>
         <li>שיעור המועמדים מהשורטליסט שעוברים לשלב הראיונות</li>
         <li>זמן עד שורטליסט ראשון</li>
@@ -479,11 +488,11 @@
 <main id="content-en" style="display:none">
 
   <section class="hero">
-    <h1>Take back ownership of who enters <em>your software and AI teams</em></h1>
+    <h1>Take back ownership of who joins <em>your software and AI teams</em></h1>
     <p>An embedded technical recruiter with an advanced AI recruiting stack, for IAI's software engineering roles with an AI focus. Plugs into your existing outsourcing framework and is funded from budget you already spend. No new budget line, no new vendor, no procurement cycle.</p>
     <div class="hero-badges">
       <div>No change to the employment model</div>
-      <div>Funded from budget already going out</div>
+      <div>Funded from budget you already spend</div>
       <div>Works as part of your team</div>
     </div>
   </section>
@@ -491,7 +500,8 @@
   <section>
     <div class="kicker">The gap</div>
     <h2>Your outsourcing vendor is excellent at employment. It was never built to find and evaluate AI-focused engineering talent</h2>
-    <p class="lead">Payroll, benefits, employment at scale: your current vendor does that well, and nothing here touches it. But it was not built to tell a strong software engineer with real AI depth from a well-written CV. And it is not a white-glove service either: deep conversations with your tech team, and speaking to candidates in an engineer's language, were simply never part of that model. The result is familiar: noisy pipelines, weak shortlists, wasted interview hours for hiring managers, long time-to-fill, and mis-hires that surface only after onboarding.</p>
+    <p class="lead">Payroll, benefits, employment at scale: your current vendor does that well, and nothing here touches it. But it was not built to tell a strong software engineer with real AI depth from a well-written CV. And it is not a white-glove service either: deep conversations with your tech team, and speaking to candidates in an engineer's language, were simply never part of that model.</p>
+    <p class="lead" style="margin-top:12px">The result is familiar: noisy pipelines, weak shortlists, wasted interview hours for hiring managers, long time-to-fill, and mis-hires that surface only after onboarding.</p>
   </section>
 
   <section>
@@ -509,11 +519,11 @@
     <div class="kicker">The service</div>
     <h2>From intake to recommendation: five stages, one clear deliverable</h2>
     <div class="cards five">
-      <div class="card"><div class="num">1</div><h3>Deep intake with the hiring manager</h3><p>Not just role requirements: the needs of the manager, the squad and the department, including a culture-fit profile for the specific team. All of it encoded into the sourcing and evaluation profile.</p><a class="sample-link" href="samples/intake.html?lang=en" target="_blank" rel="noopener">See the deliverable →</a></div>
-      <div class="card"><div class="num">2</div><h3>Role-calibrated sourcing</h3><p>Software engineers with real AI depth: the right sourcing channels, and outreach that speaks their language.</p><a class="sample-link" href="samples/sourcing.html?lang=en" target="_blank" rel="noopener">See the deliverable →</a></div>
-      <div class="card"><div class="num">3</div><h3>Structured evaluation</h3><p>Evidence-based scoring across six dimensions, including CV-to-LinkedIn consistency and detection of AI-inflated resumes. Not keyword matching.</p><a class="sample-link" href="samples/dossier.html?lang=en" target="_blank" rel="noopener">See the deliverable →</a></div>
-      <div class="card"><div class="num">4</div><h3>A shortlist of 3 to 5 finalists</h3><p>A dossier per finalist: strengths, risks, and what to probe in the interview. The shortlist reflects your team's profile, not a generic search.</p><a class="sample-link" href="samples/shortlist.html?lang=en" target="_blank" rel="noopener">See the deliverable →</a></div>
-      <div class="card"><div class="num">5</div><h3>Interview prep and decision support</h3><p>A personal interview kit per candidate: questions, listen-for cues and red flags. Transcript analysis and a reasoned recommendation: advance, re-test, or pass.</p><a class="sample-link" href="samples/interview-kit.html?lang=en" target="_blank" rel="noopener">See the deliverable →</a></div>
+      <div class="card"><div class="num">1</div><h3>Deep intake with the hiring manager</h3><p>Not just role requirements: the needs of the manager, the squad and the department, including a culture-fit profile for the specific team. All of it encoded into the sourcing and evaluation profile.</p><a class="sample-link" href="samples/intake.html?lang=en" target="_blank" rel="noopener">See the deliverable ↗</a></div>
+      <div class="card"><div class="num">2</div><h3>Role-calibrated sourcing</h3><p>Software engineers with real AI depth: the right sourcing channels, and outreach that speaks their language.</p><a class="sample-link" href="samples/sourcing.html?lang=en" target="_blank" rel="noopener">See the deliverable ↗</a></div>
+      <div class="card"><div class="num">3</div><h3>Structured evaluation</h3><p>Evidence-based scoring across six dimensions, including CV-to-LinkedIn consistency and detection of AI-inflated CVs. Not keyword matching.</p><a class="sample-link" href="samples/dossier.html?lang=en" target="_blank" rel="noopener">See the deliverable ↗</a></div>
+      <div class="card"><div class="num">4</div><h3>A shortlist of 3 to 5 finalists</h3><p>A dossier per finalist: strengths, risks, and what to probe in the interview. The shortlist reflects your team's profile, not a generic search.</p><a class="sample-link" href="samples/shortlist.html?lang=en" target="_blank" rel="noopener">See the deliverable ↗</a></div>
+      <div class="card"><div class="num">5</div><h3>Interview prep and decision support</h3><p>A personal interview kit per candidate: questions, listen-for cues and red flags. Transcript analysis and a reasoned recommendation: advance, take another look, or pass.</p><a class="sample-link" href="samples/interview-kit.html?lang=en" target="_blank" rel="noopener">See the deliverable ↗</a></div>
     </div>
   </section>
 
@@ -608,7 +618,7 @@
 
   <section>
     <div class="kicker">The budget</div>
-    <h2>Not a new line. A smarter use of budget already going out</h2>
+    <h2>Not a new line. A smarter use of budget you already spend</h2>
     <p class="lead">Outsourcing contracts routinely carry a reduced rate for client-sourced employees, because the vendor's recruiting cost on those heads is zero. A modest reduction in the monthly rate funds this entire service, with room to spare.</p>
     <table class="btable">
       <tr><th>Component</th><th>Order of magnitude</th></tr>
@@ -637,7 +647,7 @@
       <h3>Pilot offer</h3>
       <p>Two positions, six weeks, success metrics agreed up front. A small, measurable, reversible decision.</p>
       <ul>
-        <li>Shortlist acceptance rate into interviews</li>
+        <li>Shortlist-to-interview pass rate</li>
         <li>Time to first shortlist</li>
         <li>Hiring manager satisfaction</li>
       </ul>
@@ -648,7 +658,7 @@
     <h2>Let's talk</h2>
     <p class="lead" style="margin: 0 auto;">Happy to walk through the system in a short meeting, on a real position you have open right now.</p>
     <div class="bio">Samuel Kemper, founder and owner of TechRuiter IL. A technical recruiter who lives between hiring managers and engineers: I built TechRuiter IL's recruiting practice for Israeli tech companies, and built BeSa, the AI recruiting stack behind this service.</div>
-    <div class="who">Samuel Kemper - TechRuiter IL</div>
+    <div class="who">Samuel Kemper · TechRuiter IL</div>
     <div class="mail"><a href="mailto:samuel@skemper.co">samuel@skemper.co</a><a class="li" href="https://www.linkedin.com/in/samuel-kemper-cucher/" target="_blank" rel="noopener">Who I am · LinkedIn</a></div>
   </section>
 
@@ -668,6 +678,8 @@
       setLang(lang);
     } else {
       document.getElementById('gate-err').textContent = 'קוד שגוי · Incorrect code';
+      var inp = document.getElementById('code');
+      inp.focus(); inp.select();
     }
   }
 
@@ -686,6 +698,9 @@
 
   document.getElementById('code').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') unlock(localStorage.getItem('sk_lang') || 'he');
+  });
+  document.getElementById('code').addEventListener('input', function () {
+    document.getElementById('gate-err').textContent = '';
   });
 
   if (localStorage.getItem('sk_ok') === '1') {

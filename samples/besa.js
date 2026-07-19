@@ -15,8 +15,8 @@
     document.getElementById('sw-en').classList.toggle('on', !isHe);
     var note = document.getElementById('demo-note');
     if (note) note.textContent = isHe
-      ? 'דוגמת תוצר אמיתית של BeSa. כל הפרטים המזהים בדויים או הוסוו לצורך הדגמה.'
-      : 'A real BeSa deliverable format. All identifying details are fictionalized or masked for demonstration.';
+      ? 'פורמט תוצר אמיתי של BeSa. כל הפרטים המזהים בדויים או הוסוו לצורך הדגמה.'
+      : 'A genuine BeSa deliverable format with sample data. All identifying details are fictional or masked for demonstration.';
     var back = document.getElementById('back-link');
     if (back) back.textContent = isHe ? 'חזרה לעמוד הראשי' : 'Back to main page';
   };
@@ -38,6 +38,7 @@
     '<input id="bs-code" type="password" autocomplete="off" style="width:100%;padding:13px 16px;border-radius:10px;border:1px solid #2a3650;background:#131c30;color:#fff;font-size:1rem;text-align:center;letter-spacing:.15em;outline:none;direction:ltr;">' +
     '<button id="bs-go" style="width:100%;margin-top:12px;padding:12px;border-radius:10px;border:none;font-size:.95rem;font-weight:600;cursor:pointer;background:#2757d6;color:#fff;font-family:inherit;">כניסה · Enter</button>' +
     '<div id="bs-err" style="color:#f97066;font-size:.85rem;margin-top:12px;min-height:1.2em;"></div>' +
+    '<p style="margin-top:18px;font-size:.78rem;color:#7c8698;">לא קיבלתם קוד? · No code? <a href="mailto:samuel@skemper.co" style="color:#8ea8f5;">samuel@skemper.co</a></p>' +
     '</div>';
   document.body.appendChild(overlay);
 
@@ -49,10 +50,15 @@
       setLang(lang);
     } else {
       document.getElementById('bs-err').textContent = 'קוד שגוי · Incorrect code';
+      document.getElementById('bs-code').focus();
+      document.getElementById('bs-code').select();
     }
   }
   document.getElementById('bs-go').addEventListener('click', tryUnlock);
   document.getElementById('bs-code').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') tryUnlock();
+  });
+  document.getElementById('bs-code').addEventListener('input', function () {
+    document.getElementById('bs-err').textContent = '';
   });
 })();
