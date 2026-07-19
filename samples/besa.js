@@ -7,6 +7,7 @@
   var lang = params.get('lang') || sessionStorage.getItem('sk_lang') || 'he';
 
   window.setLang = function (l) {
+    sessionStorage.setItem('sk_lang', l);
     var isHe = l === 'he';
     document.getElementById('c-he').style.display = isHe ? '' : 'none';
     document.getElementById('c-en').style.display = isHe ? 'none' : '';
