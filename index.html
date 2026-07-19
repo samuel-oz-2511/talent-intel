@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Precision Talent for AI Roles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --ink: #101828;
+    --muted: #5b6577;
+    --accent: #1d4ed8;
+    --accent-soft: #eaf0fe;
+    --line: #e4e7ec;
+    --good: #067647;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Heebo', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Access gate ---------- */
+  #gate {
+    position: fixed; inset: 0; z-index: 100;
+    background: #0b1220;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .gate-box {
+    width: 100%; max-width: 380px; text-align: center; color: #e6e9f0;
+  }
+  .gate-mark {
+    font-weight: 800; font-size: 1.1rem; letter-spacing: .12em;
+    color: #8ea8f5; margin-bottom: 28px;
+  }
+  .gate-box h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 6px; }
+  .gate-box p { font-size: .9rem; color: #9aa4b8; margin-bottom: 24px; }
+  .gate-box input {
+    width: 100%; padding: 13px 16px; border-radius: 10px;
+    border: 1px solid #2a3650; background: #131c30; color: #fff;
+    font-size: 1rem; font-family: inherit; text-align: center;
+    letter-spacing: .15em; outline: none; direction: ltr;
+  }
+  .gate-box input:focus { border-color: #4f6ef7; }
+  .gate-langs { display: flex; gap: 10px; margin-top: 16px; }
+  .gate-langs button {
+    flex: 1; padding: 12px; border-radius: 10px; border: none;
+    font-family: inherit; font-size: .95rem; font-weight: 600;
+    cursor: pointer; background: #2757d6; color: #fff;
+    transition: background .15s;
+  }
+  .gate-langs button:hover { background: #1f47b3; }
+  .gate-langs button.alt { background: #1a2540; color: #c6d2ec; }
+  .gate-langs button.alt:hover { background: #223055; }
+  #gate-err { color: #f97066; font-size: .85rem; margin-top: 12px; min-height: 1.2em; }
+
+  /* ---------- Layout ---------- */
+  #site { visibility: hidden; }
+  #site.open { visibility: visible; }
+  header.top {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(247,248,250,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top-inner {
+    max-width: 980px; margin: 0 auto; padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .wordmark { font-weight: 800; font-size: 1rem; letter-spacing: .02em; }
+  .wordmark span { color: var(--accent); }
+  .lang-switch {
+    border: 1px solid var(--line); border-radius: 999px; background: #fff;
+    padding: 4px; display: flex; gap: 2px;
+  }
+  .lang-switch button {
+    border: none; background: transparent; font-family: inherit;
+    font-size: .82rem; font-weight: 600; padding: 5px 14px;
+    border-radius: 999px; cursor: pointer; color: var(--muted);
+  }
+  .lang-switch button.on { background: var(--ink); color: #fff; }
+
+  main { max-width: 980px; margin: 0 auto; padding: 0 20px 80px; }
+  section { padding: 56px 0 8px; }
+  .kicker {
+    display: inline-block; font-size: .78rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 4px 12px; border-radius: 999px; margin-bottom: 14px;
+  }
+  h2 { font-size: 1.7rem; font-weight: 700; line-height: 1.25; margin-bottom: 14px; }
+  .lead { font-size: 1.05rem; color: var(--muted); max-width: 640px; }
+
+  /* Hero */
+  .hero { padding: 84px 0 40px; }
+  .hero h1 {
+    font-size: clamp(2rem, 5.5vw, 3.1rem);
+    font-weight: 800; line-height: 1.15; max-width: 760px;
+    margin-bottom: 20px; letter-spacing: -0.01em;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 640px; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .hero-badges div {
+    background: #fff; border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 16px; font-size: .87rem; font-weight: 500;
+  }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; margin-top: 26px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 22px;
+  }
+  .card .num {
+    width: 30px; height: 30px; border-radius: 9px;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .9rem; margin-bottom: 14px;
+  }
+  .card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: .9rem; color: var(--muted); }
+
+  /* Flow */
+  .flow {
+    margin-top: 26px; display: flex; align-items: stretch; gap: 0;
+    flex-wrap: wrap;
+  }
+  .flow-block {
+    flex: 1 1 260px; border-radius: var(--radius); padding: 24px;
+  }
+  .flow-block.ours { background: var(--accent); color: #fff; }
+  .flow-block.theirs { background: #fff; border: 1px solid var(--line); }
+  .flow-block h4 { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 12px; }
+  .flow-block ul { list-style: none; }
+  .flow-block li { padding: 7px 0; font-weight: 500; font-size: .95rem; border-top: 1px solid rgba(255,255,255,.18); }
+  .flow-block.theirs li { border-top: 1px solid var(--line); color: var(--muted); }
+  .flow-block li:first-child { border-top: none; }
+  .flow-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; color: var(--accent); padding: 0 18px; font-weight: 800;
+  }
+  .flow-note { margin-top: 16px; font-size: .92rem; color: var(--muted); max-width: 640px; }
+
+  /* Pricing */
+  .price-wrap {
+    margin-top: 26px; background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .price-row {
+    display: flex; justify-content: space-between; gap: 20px;
+    padding: 18px 24px; border-top: 1px solid var(--line);
+    align-items: baseline; flex-wrap: wrap;
+  }
+  .price-row:first-child { border-top: none; }
+  .price-row .l { font-weight: 600; font-size: .97rem; max-width: 560px; }
+  .price-row .l small { display: block; font-weight: 400; color: var(--muted); font-size: .86rem; margin-top: 2px; }
+  .price-row .v { font-weight: 800; font-size: 1.05rem; color: var(--accent); white-space: nowrap; }
+  .price-cap {
+    background: #f0fdf4; border-top: 1px solid #d1fadf; padding: 18px 24px;
+    font-weight: 700; color: var(--good); font-size: 1rem;
+  }
+  .example {
+    margin-top: 14px; font-size: .88rem; color: var(--muted);
+    background: var(--accent-soft); border-radius: 10px; padding: 14px 18px;
+  }
+
+  /* Budget table */
+  .btable { width: 100%; border-collapse: collapse; margin-top: 26px; background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+  .btable th, .btable td { padding: 14px 18px; text-align: start; font-size: .93rem; border-top: 1px solid var(--line); }
+  .btable th { background: #fafbfc; font-weight: 700; border-top: none; }
+  .btable td.v { font-weight: 700; white-space: nowrap; }
+  .btable tr.net td { background: #f0fdf4; color: var(--good); font-weight: 700; }
+
+  /* Champion */
+  .ammo { margin-top: 26px; display: grid; gap: 12px; }
+  .ammo-item {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 22px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .ammo-item .tick {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    background: #ecfdf3; color: var(--good); font-weight: 800;
+    display: flex; align-items: center; justify-content: center; font-size: .85rem;
+    margin-top: 2px;
+  }
+  .ammo-item p { font-size: .95rem; }
+  .ammo-item p b { display: block; margin-bottom: 2px; }
+
+  /* Pilot */
+  .pilot {
+    margin-top: 26px; background: var(--ink); color: #fff;
+    border-radius: var(--radius); padding: 34px 30px;
+  }
+  .pilot h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 10px; }
+  .pilot p { color: #b9c2d4; max-width: 620px; font-size: .97rem; }
+  .pilot ul { list-style: none; margin-top: 18px; display: grid; gap: 8px; }
+  .pilot li { font-size: .95rem; font-weight: 500; padding-inline-start: 24px; position: relative; }
+  .pilot li::before { content: "•"; color: #8ea8f5; position: absolute; inset-inline-start: 6px; }
+
+  /* Contact */
+  .contact { text-align: center; padding-top: 70px; }
+  .contact h2 { margin-bottom: 6px; }
+  .contact .who { font-size: 1.05rem; font-weight: 600; margin-top: 14px; }
+  .contact .mail a {
+    display: inline-block; margin-top: 14px; background: var(--accent); color: #fff;
+    text-decoration: none; font-weight: 600; padding: 13px 30px; border-radius: 10px;
+  }
+  footer { text-align: center; padding: 40px 0 10px; color: #98a2b3; font-size: .8rem; }
+
+  @media (max-width: 720px) {
+    .flow-arrow { width: 100%; padding: 6px 0; transform: rotate(90deg); }
+    section { padding: 44px 0 8px; }
+    .hero { padding: 56px 0 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-mark">SK · TALENT</div>
+    <h1>גישה מאובטחת · Private Access</h1>
+    <p>הזינו קוד גישה ובחרו שפה &nbsp;·&nbsp; Enter access code and choose a language</p>
+    <input id="code" type="password" inputmode="text" autocomplete="off" placeholder="Access code">
+    <div class="gate-langs">
+      <button onclick="unlock('he')">כניסה בעברית</button>
+      <button class="alt" onclick="unlock('en')">Enter in English</button>
+    </div>
+    <div id="gate-err"></div>
+  </div>
+</div>
+
+<div id="site">
+<header class="top">
+  <div class="top-inner">
+    <div class="wordmark">SK<span> · </span>TALENT</div>
+    <div class="lang-switch">
+      <button id="sw-he" onclick="setLang('he')">עברית</button>
+      <button id="sw-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== HEBREW ============================== -->
+<main id="content-he">
+
+  <section class="hero">
+    <h1>החזירו לעצמכם את השליטה על מי שנכנס <em>לצוותי ה-AI</em> שלכם</h1>
+    <p>שכבת סורסינג, הערכה ושורטליסט לתפקידי AI בתעשייה האווירית. מתחברת למערך מיקור החוץ הקיים שלכם, וממומנת מתקציב שכבר יוצא היום. בלי סעיף תקציבי חדש, בלי ספק חדש, בלי מכרז.</p>
+    <div class="hero-badges">
+      <div>ללא שינוי במודל ההעסקה</div>
+      <div>ממומן מהמרווח הקיים</div>
+      <div>תשלום לפי הצלחה בלבד</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">הפער</div>
+    <h2>מערך מיקור החוץ שלכם מצוין בהעסקה. הוא לא נבנה לאיתור ולהערכה של טאלנט AI</h2>
+    <p class="lead">שכר, תנאים, ניהול העסקה בקנה מידה גדול: את זה הספק הקיים עושה טוב, ואין סיבה לגעת בזה. אבל הוא לא נבנה כדי להבדיל בין מהנדס AI חזק לבין קורות חיים מנוסחים היטב. התוצאה מוכרת: פייפליין רועש, שורטליסטים חלשים, שעות ראיונות מבוזבזות של מנהלים מגייסים, זמן איוש ארוך וטעויות גיוס שמתגלות רק אחרי הקליטה.</p>
+  </section>
+
+  <section>
+    <div class="kicker">השירות</div>
+    <h2>מסורסינג ועד המלצה: ארבעה שלבים, תוצר אחד ברור</h2>
+    <div class="cards">
+      <div class="card"><div class="num">1</div><h3>סורסינג מותאם לתפקיד</h3><p>פרופיל מדויק שנבנה יחד עם המנהל המגייס: יכולות ליבה, מקורות איתור, והודעות פנייה שמדברות בשפה של מועמדי AI.</p></div>
+      <div class="card"><div class="num">2</div><h3>הערכה מובנית</h3><p>סינון מבוסס ראיות מול קריטריונים ייעודיים לתפקיד. עומק טכני אמיתי, לא התאמת מילות מפתח.</p></div>
+      <div class="card"><div class="num">3</div><h3>שורטליסט של 3 עד 5 פיינליסטים</h3><p>תיק מועמד לכל פיינליסט: חוזקות, סיכונים, ומה כדאי לבדוק לעומק בראיון.</p></div>
+      <div class="card"><div class="num">4</div><h3>הכנת ראיונות והמלצת המשך</h3><p>שאלות מומלצות לכל מועמד, והמלצה מנומקת לצעד הבא: לקדם, לבדוק שוב, או לוותר.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">איך זה מתחבר</div>
+    <h2>שכבה משלימה, לא ספק מתחרה</h2>
+    <div class="flow">
+      <div class="flow-block ours">
+        <h4>השכבה שלנו</h4>
+        <ul><li>סורסינג</li><li>הערכה וסינון</li><li>שורטליסט והמלצות</li></ul>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-block theirs">
+        <h4>הספק הקיים שלכם</h4>
+        <ul><li>העסקה ושכר</li><li>חוזים ותנאים</li><li>השמה בתעשייה האווירית</li></ul>
+      </div>
+    </div>
+    <p class="flow-note">הפיינליסט שנבחר נקלט דרך אותו מערך העסקה שכבר עובד היום. שום דבר לא משתנה בצד החוזי או התפעולי. הדבר היחיד שמשתנה הוא איכות האנשים שנכנסים למשפך.</p>
+  </section>
+
+  <section>
+    <div class="kicker">מודל מסחרי</div>
+    <h2>פשוט, הוגן, ותמיד עם תקרה ברורה</h2>
+    <div class="price-wrap">
+      <div class="price-row">
+        <div class="l">ריטיינר חודשי לכל משרה פתוחה<small>נגבה רק כל עוד המשרה פתוחה. 8 משרות פתוחות = 24,000 ש"ח בחודש, וזה המקסימום.</small></div>
+        <div class="v">3,000 ש"ח</div>
+      </div>
+      <div class="price-row">
+        <div class="l">דמי הצלחה לגיוס<small>משולמים רק אחרי שהעובד השלים חודשיים מלאים בתפקיד. הריטיינר ששולם על המשרה מקוזז במלואו.</small></div>
+        <div class="v">משכורת ברוטו אחת, בקיזוז הריטיינר</div>
+      </div>
+      <div class="price-cap">סך העלות לגיוס לעולם לא יעלה על משכורת ברוטו אחת של העובד שנקלט</div>
+    </div>
+    <div class="example">דוגמה: משרה אוישה אחרי חודשיים וחצי. שולם ריטיינר של 7,500 ש"ח. העובד נקלט בשכר 42,000 ש"ח ברוטו והשלים חודשיים. דמי ההצלחה: 34,500 ש"ח. סך הכול: 42,000 ש"ח, בדיוק משכורת אחת, עם תקופת אחריות מובנית של חודשיים.</div>
+  </section>
+
+  <section>
+    <div class="kicker">התקציב</div>
+    <h2>לא סעיף חדש. שימוש חכם יותר בתקציב שכבר יוצא</h2>
+    <p class="lead">בחוזי מיקור חוץ מקובל תעריף מופחת עבור עובדים שהלקוח איתר בעצמו, כי עלות הגיוס של הספק על אותם עובדים היא אפס. הפחתה צנועה בתעריף החודשי מממנת את השירות כולו, ועוד נשאר.</p>
+    <table class="btable">
+      <tr><th>רכיב</th><th>סדר גודל</th></tr>
+      <tr><td>הפחתת תעריף חודשית לעובד שאיתרתם בעצמכם</td><td class="v">2,000 עד 3,000 ש"ח לחודש</td></tr>
+      <tr><td>תקציב שמתפנה לאורך העסקה טיפוסית של 24 חודשים</td><td class="v">48 עד 72 אלף ש"ח לגיוס</td></tr>
+      <tr><td>העלות הכוללת של השירות לגיוס</td><td class="v">משכורת ברוטו אחת</td></tr>
+      <tr class="net"><td>השורה התחתונה לתעשייה האווירית</td><td class="v">חיסכון, לצד שורטליסטים טובים יותר</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="kicker">הקייס הפנימי</div>
+    <h2>שלושה משפטים שסוגרים את הדיון</h2>
+    <div class="ammo">
+      <div class="ammo-item"><div class="tick">✓</div><p><b>"זה לא תקציב חדש."</b>השירות ממומן מהפחתת תעריף על עובדים שאנחנו מאתרים בעצמנו. אותו סעיף תקציבי, חלוקה חכמה יותר.</p></div>
+      <div class="ammo-item"><div class="tick">✓</div><p><b>"זה לא ספק חדש ולא מכרז חדש."</b>מודל ההעסקה לא משתנה. הספק הקיים ממשיך להעסיק ולהציב. אנחנו רק משדרגים את ראש המשפך.</p></div>
+      <div class="ammo-item"><div class="tick">✓</div><p><b>"הסיכון אפסי."</b>תשלום מלא רק אחרי חודשיים של העסקה בפועל. אם אין גיוס מוצלח, שילמנו ריטיינר מינימלי בלבד. פיילוט קטן, החלטה הפיכה.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">ניסיון מוכח</div>
+    <h2>המערכת הזו כבר עובדת</h2>
+    <p class="lead">מנוע הסורסינג, ההערכה וההכנה לראיונות שבבסיס השירות נבנה ופועל בהתקשרות של שישה חודשים עם חברת AI אמריקאית ישראלית: מאיתור מועמדים, דרך שורטליסטים מדורגים עם תיקי מועמד, ועד המלצות המשך לכל ראיון. לפני כן: הקמה וניהול של TechRuiter IL, אופרציית גיוס לחברות הייטק ישראליות.</p>
+    <div class="pilot">
+      <h3>הצעת פיילוט</h3>
+      <p>שתי משרות, שישה שבועות, מדדי הצלחה שמוגדרים מראש. החלטה קטנה, מדידה, והפיכה.</p>
+      <ul>
+        <li>שיעור המועמדים מהשורטליסט שעוברים לשלב הראיונות</li>
+        <li>זמן עד שורטליסט ראשון</li>
+        <li>שביעות רצון המנהל המגייס</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>נדבר?</h2>
+    <p class="lead" style="margin: 0 auto;">אשמח להציג את המערכת בפגישה קצרה, על משרה אמיתית שפתוחה אצלכם עכשיו.</p>
+    <div class="who">Samuel Kemper</div>
+    <div class="mail"><a href="mailto:samuel@touch2water.com">samuel@touch2water.com</a></div>
+  </section>
+
+  <footer>מסמך פרטי. נא לא להפיץ מחוץ לתעשייה האווירית.</footer>
+</main>
+
+<!-- ============================== ENGLISH ============================== -->
+<main id="content-en" style="display:none">
+
+  <section class="hero">
+    <h1>Take back ownership of who enters <em>your AI teams</em></h1>
+    <p>A sourcing, evaluation and shortlisting layer for IAI's AI roles. It plugs into your existing outsourcing framework and is funded from budget you already spend. No new budget line, no new vendor, no procurement cycle.</p>
+    <div class="hero-badges">
+      <div>No change to the employment model</div>
+      <div>Funded from the existing spread</div>
+      <div>Pay only on success</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">The gap</div>
+    <h2>Your outsourcing vendor is excellent at employment. It was never built to find and evaluate AI talent</h2>
+    <p class="lead">Payroll, benefits, employment at scale: your current vendor does that well, and nothing here touches it. But it was not built to tell a strong AI engineer from a well-written CV. The result is familiar: noisy pipelines, weak shortlists, wasted interview hours for hiring managers, long time-to-fill, and mis-hires that surface only after onboarding.</p>
+  </section>
+
+  <section>
+    <div class="kicker">The service</div>
+    <h2>From sourcing to recommendation: four stages, one clear deliverable</h2>
+    <div class="cards">
+      <div class="card"><div class="num">1</div><h3>Role-calibrated sourcing</h3><p>A precise profile built with the hiring manager: core capabilities, sourcing channels, and outreach that speaks the language of AI candidates.</p></div>
+      <div class="card"><div class="num">2</div><h3>Structured evaluation</h3><p>Evidence-based screening against role-specific criteria. Real technical depth, not keyword matching.</p></div>
+      <div class="card"><div class="num">3</div><h3>A shortlist of 3 to 5 finalists</h3><p>A dossier per finalist: strengths, risks, and what to probe in the interview.</p></div>
+      <div class="card"><div class="num">4</div><h3>Interview prep and next-step call</h3><p>Recommended questions per candidate, and a reasoned recommendation: advance, re-test, or pass.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">How it plugs in</div>
+    <h2>A complementary layer, not a competing vendor</h2>
+    <div class="flow">
+      <div class="flow-block ours">
+        <h4>Our layer</h4>
+        <ul><li>Sourcing</li><li>Evaluation and screening</li><li>Shortlists and recommendations</li></ul>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-block theirs">
+        <h4>Your existing vendor</h4>
+        <ul><li>Employment and payroll</li><li>Contracts and benefits</li><li>Placement at IAI</li></ul>
+      </div>
+    </div>
+    <p class="flow-note">The chosen finalist is onboarded through the same employment vehicle that already works today. Nothing changes contractually or operationally. The only thing that changes is the quality of the people entering the funnel.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Commercial model</div>
+    <h2>Simple, fair, and always capped</h2>
+    <div class="price-wrap">
+      <div class="price-row">
+        <div class="l">Monthly retainer per open position<small>Charged only while the position is open. 8 open positions = 24,000 NIS per month, and that is the maximum.</small></div>
+        <div class="v">3,000 NIS</div>
+      </div>
+      <div class="price-row">
+        <div class="l">Success fee per hire<small>Due only after the hire completes two full months in the role. All retainer paid on that position is fully credited.</small></div>
+        <div class="v">One month gross salary, minus retainer</div>
+      </div>
+      <div class="price-cap">Total cost per hire never exceeds one month of the hire's gross salary</div>
+    </div>
+    <div class="example">Example: a position fills after two and a half months. Retainer paid: 7,500 NIS. The hire starts at 42,000 NIS gross and completes two months. Success fee: 34,500 NIS. Total: 42,000 NIS, exactly one salary, with a built-in two-month quality guarantee.</div>
+  </section>
+
+  <section>
+    <div class="kicker">The budget</div>
+    <h2>Not a new line. A smarter use of budget already going out</h2>
+    <p class="lead">Outsourcing contracts routinely carry a reduced rate for client-sourced employees, because the vendor's recruiting cost on those heads is zero. A modest reduction in the monthly rate funds this entire service, with room to spare.</p>
+    <table class="btable">
+      <tr><th>Component</th><th>Order of magnitude</th></tr>
+      <tr><td>Monthly rate reduction per client-sourced employee</td><td class="v">2,000 to 3,000 NIS per month</td></tr>
+      <tr><td>Budget freed over a typical 24-month tenure</td><td class="v">48 to 72K NIS per hire</td></tr>
+      <tr><td>Total cost of this service per hire</td><td class="v">One month gross salary</td></tr>
+      <tr class="net"><td>Net outcome for IAI</td><td class="v">Savings, plus stronger shortlists</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="kicker">The internal case</div>
+    <h2>Three sentences that close the discussion</h2>
+    <div class="ammo">
+      <div class="ammo-item"><div class="tick">✓</div><p><b>"This is not new budget."</b>The service is funded by a rate reduction on employees we source ourselves. Same budget line, smarter split.</p></div>
+      <div class="ammo-item"><div class="tick">✓</div><p><b>"This is not a new vendor and not a new tender."</b>The employment model does not change. The existing vendor keeps employing and placing. We only upgrade the top of the funnel.</p></div>
+      <div class="ammo-item"><div class="tick">✓</div><p><b>"The risk is near zero."</b>Full payment only after two months of actual employment. If there is no successful hire, we paid a minimal retainer. A small pilot, a reversible decision.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Proven track record</div>
+    <h2>This system already works</h2>
+    <p class="lead">The sourcing, evaluation and interview-prep engine behind this service was built and is running in a six-month engagement with a US-Israeli AI company: from candidate sourcing, through ranked shortlists with per-candidate dossiers, to next-step recommendations for every interview. Before that: founding and running TechRuiter IL, a recruiting operation for Israeli tech companies.</p>
+    <div class="pilot">
+      <h3>Pilot offer</h3>
+      <p>Two positions, six weeks, success metrics agreed up front. A small, measurable, reversible decision.</p>
+      <ul>
+        <li>Shortlist acceptance rate into interviews</li>
+        <li>Time to first shortlist</li>
+        <li>Hiring manager satisfaction</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Let's talk</h2>
+    <p class="lead" style="margin: 0 auto;">Happy to walk through the system in a short meeting, on a real position you have open right now.</p>
+    <div class="who">Samuel Kemper</div>
+    <div class="mail"><a href="mailto:samuel@touch2water.com">samuel@touch2water.com</a></div>
+  </section>
+
+  <footer>Private document. Please do not distribute outside IAI.</footer>
+</main>
+</div>
+
+<script>
+  var CODE = atob('SUFJMjAyNg==');
+
+  function unlock(lang) {
+    var v = document.getElementById('code').value.trim();
+    if (v.toUpperCase() === CODE) {
+      sessionStorage.setItem('sk_ok', '1');
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('site').classList.add('open');
+      setLang(lang);
+    } else {
+      document.getElementById('gate-err').textContent = 'קוד שגוי · Incorrect code';
+    }
+  }
+
+  function setLang(lang) {
+    var he = document.getElementById('content-he');
+    var en = document.getElementById('content-en');
+    var isHe = lang === 'he';
+    he.style.display = isHe ? '' : 'none';
+    en.style.display = isHe ? 'none' : '';
+    document.documentElement.lang = isHe ? 'he' : 'en';
+    document.documentElement.dir = isHe ? 'rtl' : 'ltr';
+    document.getElementById('sw-he').classList.toggle('on', isHe);
+    document.getElementById('sw-en').classList.toggle('on', !isHe);
+    sessionStorage.setItem('sk_lang', lang);
+  }
+
+  document.getElementById('code').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') unlock(sessionStorage.getItem('sk_lang') || 'he');
+  });
+
+  if (sessionStorage.getItem('sk_ok') === '1') {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('site').classList.add('open');
+    setLang(sessionStorage.getItem('sk_lang') || 'he');
+  }
+</script>
+</body>
+</html>
