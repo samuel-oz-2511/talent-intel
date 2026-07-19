@@ -130,6 +130,16 @@
   }
   .card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 8px; }
   .card p { font-size: .9rem; color: var(--muted); }
+  .cards.five { grid-template-columns: repeat(5, 1fr); }
+  .cards.five .card { padding: 18px 15px; }
+  .cards.five .card h3 { font-size: .95rem; }
+  .cards.five .card p { font-size: .84rem; }
+  @media (max-width: 920px) {
+    .cards.five { grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); }
+    .cards.five .card { padding: 22px; }
+    .cards.five .card h3 { font-size: 1.02rem; }
+    .cards.five .card p { font-size: .9rem; }
+  }
 
   /* Process steps */
   .steps { margin-top: 30px; }
@@ -308,7 +318,7 @@
   <section>
     <div class="kicker">השירות</div>
     <h2>מאפיון ועד המלצה: חמישה שלבים, תוצר אחד ברור</h2>
-    <div class="cards">
+    <div class="cards five">
       <div class="card"><div class="num">1</div><h3>אפיון עמוק עם המנהל המגייס</h3><p>לא רק דרישות תפקיד: הצרכים של המנהל, הסקוואד והמחלקה, כולל אפיון ההתאמה התרבותית לצוות. הכול מתורגם לפרופיל חיפוש והערכה.</p></div>
       <div class="card"><div class="num">2</div><h3>סורסינג מותאם לתפקיד</h3><p>איתור מהנדסי תוכנה עם עומק AI אמיתי: ערוצי האיתור הנכונים, והודעות פנייה שמדברות בשפה שלהם.</p></div>
       <div class="card"><div class="num">3</div><h3>הערכה מובנית</h3><p>ציון מבוסס ראיות בשישה ממדים, כולל עקביות בין קורות החיים ללינקדאין וזיהוי קורות חיים שנופחו בעזרת AI. לא התאמת מילות מפתח.</p></div>
@@ -487,7 +497,7 @@
   <section>
     <div class="kicker">The service</div>
     <h2>From intake to recommendation: five stages, one clear deliverable</h2>
-    <div class="cards">
+    <div class="cards five">
       <div class="card"><div class="num">1</div><h3>Deep intake with the hiring manager</h3><p>Not just role requirements: the needs of the manager, the squad and the department, including a culture-fit profile for the specific team. All of it encoded into the sourcing and evaluation profile.</p></div>
       <div class="card"><div class="num">2</div><h3>Role-calibrated sourcing</h3><p>Software engineers with real AI depth: the right sourcing channels, and outreach that speaks their language.</p></div>
       <div class="card"><div class="num">3</div><h3>Structured evaluation</h3><p>Evidence-based scoring across six dimensions, including CV-to-LinkedIn consistency and detection of AI-inflated resumes. Not keyword matching.</p></div>
