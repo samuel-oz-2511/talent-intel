@@ -20,6 +20,12 @@ body {
   color: #c6d2ec; text-decoration: none; font-size: .85rem; font-weight: 600;
   border: 1px solid #2a3650; border-radius: 999px; padding: 5px 14px;
 }
+.topbar .pdf-btn {
+  color: #c6d2ec; background: transparent; font-family: inherit;
+  font-size: .85rem; font-weight: 600; border: 1px solid #2a3650;
+  border-radius: 999px; padding: 5px 14px; cursor: pointer;
+}
+.topbar .pdf-btn:hover { border-color: #4f6ef7; color: #fff; }
 .topbar .lang-switch { border: 1px solid #2a3650; border-radius: 999px; padding: 3px; display: flex; gap: 2px; }
 .topbar .lang-switch button {
   border: none; background: transparent; color: #9aa4b8; font-family: inherit;

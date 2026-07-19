@@ -83,6 +83,13 @@
     border: 1px solid var(--line); border-radius: 999px; background: #fff;
     padding: 4px; display: flex; gap: 2px;
   }
+  .top-actions { display: flex; align-items: center; gap: 8px; }
+  .pdf-btn {
+    border: 1px solid var(--line); background: #fff; color: var(--muted);
+    font-family: inherit; font-size: .82rem; font-weight: 600;
+    padding: 7px 14px; border-radius: 999px; cursor: pointer;
+  }
+  .pdf-btn:hover { border-color: var(--accent); color: var(--accent); }
   .lang-switch button {
     border: none; background: transparent; font-family: inherit;
     font-size: .82rem; font-weight: 600; padding: 5px 14px;
@@ -270,6 +277,7 @@
   }
   @media print {
     header.top { position: static; }
+    .pdf-btn, .lang-switch { display: none; }
     .pilot, .flow-block.ours, .step-marker, .kicker, .chip, .price-cap, .tick { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .card, .step, .price-wrap, .ammo-item, .pilot { break-inside: avoid; }
   }
@@ -296,9 +304,12 @@
 <header class="top">
   <div class="top-inner">
     <div class="wordmark">TECHRUITER<span> IL</span></div>
-    <div class="lang-switch">
-      <button id="sw-he" onclick="setLang('he')">עברית</button>
-      <button id="sw-en" onclick="setLang('en')">EN</button>
+    <div class="top-actions">
+      <button class="pdf-btn" onclick="window.print()" title="הורדה כ-PDF · Download as PDF">⬇ PDF</button>
+      <div class="lang-switch">
+        <button id="sw-he" onclick="setLang('he')">עברית</button>
+        <button id="sw-en" onclick="setLang('en')">EN</button>
+      </div>
     </div>
   </div>
 </header>
