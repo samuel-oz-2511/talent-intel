@@ -131,6 +131,29 @@
   .card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 8px; }
   .card p { font-size: .9rem; color: var(--muted); }
 
+  /* Process steps */
+  .steps { margin-top: 30px; }
+  .step { display: flex; gap: 18px; position: relative; padding-bottom: 26px; }
+  .step:last-child { padding-bottom: 0; }
+  .step-marker {
+    flex: none; width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .95rem; z-index: 1;
+  }
+  .step::before {
+    content: ""; position: absolute; top: 34px; bottom: 0;
+    inset-inline-start: 16px; width: 2px; background: var(--line);
+  }
+  .step:last-child::before { display: none; }
+  .step-body { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; flex: 1; }
+  .step-body .when { font-size: .76rem; color: var(--accent); font-weight: 700; letter-spacing: .05em; margin-bottom: 4px; }
+  .step-body h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 6px; }
+  .step-body p { font-size: .9rem; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .chip { font-size: .75rem; font-weight: 600; background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 3px 10px; }
+  .chip.gray { background: #f2f4f7; color: var(--muted); }
+
   /* Flow */
   .flow {
     margin-top: 26px; display: flex; align-items: stretch; gap: 0;
@@ -268,7 +291,7 @@
   <section>
     <div class="kicker">הפער</div>
     <h2>מערך מיקור החוץ שלכם מצוין בהעסקה. הוא לא נבנה לאיתור ולהערכה של טאלנט פיתוח עם עומק AI</h2>
-    <p class="lead">שכר, תנאים, ניהול העסקה בקנה מידה גדול: את זה הספק הקיים עושה טוב, ואין סיבה לגעת בזה. אבל הוא לא נבנה כדי להבדיל בין מהנדס תוכנה חזק עם עומק AI אמיתי לבין קורות חיים מנוסחים היטב. התוצאה מוכרת: פייפליין רועש, שורטליסטים חלשים, שעות ראיונות מבוזבזות של מנהלים מגייסים, זמן איוש ארוך וטעויות גיוס שמתגלות רק אחרי הקליטה.</p>
+    <p class="lead">שכר, תנאים, ניהול העסקה בקנה מידה גדול: את זה הספק הקיים עושה טוב, ואין סיבה לגעת בזה. אבל הוא לא נבנה כדי להבדיל בין מהנדס תוכנה חזק עם עומק AI אמיתי לבין קורות חיים מנוסחים היטב. וזה גם לא שירות בוטיק: שיחות עומק עם הצוות הטכני שלכם ושיח עם מועמדים בשפה של מהנדסים פשוט אינם חלק מהמודל. התוצאה מוכרת: פייפליין רועש, שורטליסטים חלשים, שעות ראיונות מבוזבזות של מנהלים מגייסים, זמן איוש ארוך וטעויות גיוס שמתגלות רק אחרי הקליטה.</p>
   </section>
 
   <section>
@@ -291,6 +314,44 @@
       <div class="card"><div class="num">3</div><h3>הערכה מובנית</h3><p>ציון מבוסס ראיות בשישה ממדים, כולל עקביות בין קורות החיים ללינקדאין וזיהוי קורות חיים שנופחו בעזרת AI. לא התאמת מילות מפתח.</p></div>
       <div class="card"><div class="num">4</div><h3>שורטליסט של 3 עד 5 פיינליסטים</h3><p>תיק מועמד לכל פיינליסט: חוזקות, סיכונים, ומה לבדוק לעומק בראיון. השורטליסט משקף את האפיון של הצוות שלכם, לא חיפוש גנרי.</p></div>
       <div class="card"><div class="num">5</div><h3>הכנת ראיונות וליווי ההחלטה</h3><p>ערכת ראיון אישית לכל מועמד: שאלות, על מה להקשיב ודגלים אדומים. ניתוח תמלילי ראיונות והמלצה מנומקת: לקדם, לבדוק שוב, או לוותר.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">התהליך</div>
+    <h2>כך נראית עבודה על משרה אחת</h2>
+    <p class="lead">כלי AI עושים את העבודה הכמותית, המומחיות האנושית עושה את העבודה העמוקה, והמנהל המגייס שומר על הבעלות ומקבל כלים לאורך כל הדרך. בכל שלב ברור עם מי מדברים ומה התוצר, ולוח הזמנים משקף קצב עבודה טיפוסי למשרה אחת.</p>
+    <div class="steps">
+      <div class="step"><div class="step-marker">1</div><div class="step-body">
+        <div class="when">ימים 1 עד 3</div><h3>אפיון וכיול</h3>
+        <p>פגישת עומק עם המנהל המגייס וראש הצוות: דרישות, תרבות הצוות, קווים אדומים, וכיול על החלטות גיוס אמיתיות מהעבר. התוצר: פרופיל חיפוש והערכה מוסכם.</p>
+        <div class="chips"><span class="chip">מנהל מגייס</span><span class="chip">ראש צוות</span><span class="chip gray">BeSa: פרופיל הערכה מכויל</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">2</div><div class="step-body">
+        <div class="when">שבועות 1 עד 2</div><h3>סורסינג ופנייה אישית</h3>
+        <p>BeSa מסננת מאות פרופילים לפי אותות איכות, ואני מנהל את השיחות: פנייה אישית בשפה של מהנדסים, לא תבנית. מי שעונה פוגש אדם שמבין את הטכנולוגיה.</p>
+        <div class="chips"><span class="chip">מועמדים</span><span class="chip gray">BeSa: סינון אותות בקנה מידה גדול</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">3</div><div class="step-body">
+        <div class="when">שבועות 2 עד 3</div><h3>הערכה ושיחות עומק</h3>
+        <p>ציון מבוסס ראיות בשישה ממדים לכל מועמד, ושיחת היכרות עם ערכה אישית: שאלות ממוקדות, על מה להקשיב, וקריטריונים ברורים לקידום.</p>
+        <div class="chips"><span class="chip">מועמדים</span><span class="chip gray">BeSa: ציון + ערכות שיחה</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">4</div><div class="step-body">
+        <div class="when">שבועות 3 עד 4</div><h3>שורטליסט וסנכרון</h3>
+        <p>3 עד 5 פיינליסטים עם תיקי מועמד מלאים, וישיבת שורטליסט עם המנהל המגייס: מה ראינו, איפה הסיכונים, את מי מקדמים ולמה.</p>
+        <div class="chips"><span class="chip">מנהל מגייס</span><span class="chip gray">BeSa: תיקי מועמד</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">5</div><div class="step-body">
+        <div class="when">שלב הראיונות</div><h3>ראיונות בבעלות שלכם, בליווי שלי</h3>
+        <p>המראיינים מקבלים ערכת ראיון לכל מועמד וכלי הערכה אחידים. אני מכין את הצוות לפני, ומנתח את התמלילים אחרי. המנהל מוביל, ואני מוודא שההחלטה מבוססת.</p>
+        <div class="chips"><span class="chip">מנהל מגייס</span><span class="chip">מראיינים</span><span class="chip">הצוות הטכני</span><span class="chip gray">BeSa: ערכות ראיון + ניתוח תמלילים</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">6</div><div class="step-body">
+        <div class="when">החלטה וקליטה</div><h3>המלצה, קליטה ומעקב</h3>
+        <p>המלצה מנומקת לכל פיינליסט, העברה חלקה למסלול ההעסקה הקיים, ומעקב צמוד עד סוף החודשיים הראשונים בתפקיד.</p>
+        <div class="chips"><span class="chip">מנהל מגייס</span><span class="chip">HR</span><span class="chip">הספק הקיים</span></div>
+      </div></div>
     </div>
   </section>
 
@@ -409,7 +470,7 @@
   <section>
     <div class="kicker">The gap</div>
     <h2>Your outsourcing vendor is excellent at employment. It was never built to find and evaluate AI-focused engineering talent</h2>
-    <p class="lead">Payroll, benefits, employment at scale: your current vendor does that well, and nothing here touches it. But it was not built to tell a strong software engineer with real AI depth from a well-written CV. The result is familiar: noisy pipelines, weak shortlists, wasted interview hours for hiring managers, long time-to-fill, and mis-hires that surface only after onboarding.</p>
+    <p class="lead">Payroll, benefits, employment at scale: your current vendor does that well, and nothing here touches it. But it was not built to tell a strong software engineer with real AI depth from a well-written CV. And it is not a white-glove service either: deep conversations with your tech team, and speaking to candidates in an engineer's language, were simply never part of that model. The result is familiar: noisy pipelines, weak shortlists, wasted interview hours for hiring managers, long time-to-fill, and mis-hires that surface only after onboarding.</p>
   </section>
 
   <section>
@@ -432,6 +493,44 @@
       <div class="card"><div class="num">3</div><h3>Structured evaluation</h3><p>Evidence-based scoring across six dimensions, including CV-to-LinkedIn consistency and detection of AI-inflated resumes. Not keyword matching.</p></div>
       <div class="card"><div class="num">4</div><h3>A shortlist of 3 to 5 finalists</h3><p>A dossier per finalist: strengths, risks, and what to probe in the interview. The shortlist reflects your team's profile, not a generic search.</p></div>
       <div class="card"><div class="num">5</div><h3>Interview prep and decision support</h3><p>A personal interview kit per candidate: questions, listen-for cues and red flags. Transcript analysis and a reasoned recommendation: advance, re-test, or pass.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">The process</div>
+    <h2>What working on one position looks like</h2>
+    <p class="lead">AI tools do the quantitative work, human expertise does the deep work, and the hiring manager keeps ownership and gets tools all the way through. Every stage is clear on who is in the room and what it delivers, and the timeline reflects a typical cadence for a single position.</p>
+    <div class="steps">
+      <div class="step"><div class="step-marker">1</div><div class="step-body">
+        <div class="when">DAYS 1 TO 3</div><h3>Intake and calibration</h3>
+        <p>A deep session with the hiring manager and team lead: requirements, team culture, red lines, and calibration on real past hiring decisions. Deliverable: an agreed sourcing and evaluation profile.</p>
+        <div class="chips"><span class="chip">Hiring manager</span><span class="chip">Team lead</span><span class="chip gray">BeSa: calibrated evaluation profile</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">2</div><div class="step-body">
+        <div class="when">WEEKS 1 TO 2</div><h3>Sourcing and personal outreach</h3>
+        <p>BeSa screens hundreds of profiles by quality signal, and I run the conversations: personal outreach in an engineer's language, not a template. Whoever replies meets a person who understands the technology.</p>
+        <div class="chips"><span class="chip">Candidates</span><span class="chip gray">BeSa: signal screening at scale</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">3</div><div class="step-body">
+        <div class="when">WEEKS 2 TO 3</div><h3>Evaluation and deep conversations</h3>
+        <p>Evidence-based scoring across six dimensions for every candidate, plus an intro call with a personal kit: focused questions, what to listen for, and clear advance criteria.</p>
+        <div class="chips"><span class="chip">Candidates</span><span class="chip gray">BeSa: scoring + call kits</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">4</div><div class="step-body">
+        <div class="when">WEEKS 3 TO 4</div><h3>Shortlist and sync</h3>
+        <p>3 to 5 finalists with full dossiers, and a shortlist session with the hiring manager: what we saw, where the risks are, who advances and why.</p>
+        <div class="chips"><span class="chip">Hiring manager</span><span class="chip gray">BeSa: candidate dossiers</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">5</div><div class="step-body">
+        <div class="when">INTERVIEW STAGE</div><h3>Interviews you own, with me alongside</h3>
+        <p>Interviewers get an interview kit per candidate and consistent assessment tools. I prepare the panel before, and analyze the transcripts after. The manager leads, and I make sure the decision is grounded.</p>
+        <div class="chips"><span class="chip">Hiring manager</span><span class="chip">Interviewers</span><span class="chip">Tech team</span><span class="chip gray">BeSa: interview kits + transcript analysis</span></div>
+      </div></div>
+      <div class="step"><div class="step-marker">6</div><div class="step-body">
+        <div class="when">DECISION AND ONBOARDING</div><h3>Recommendation, onboarding and follow-up</h3>
+        <p>A reasoned recommendation per finalist, a smooth handoff into the existing employment vehicle, and close follow-up through the first two months in the role.</p>
+        <div class="chips"><span class="chip">Hiring manager</span><span class="chip">HR</span><span class="chip">Existing vendor</span></div>
+      </div></div>
     </div>
   </section>
 
