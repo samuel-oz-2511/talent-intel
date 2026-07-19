@@ -106,5 +106,9 @@ table.crit { width: 100%; border-collapse: collapse; font-size: .87rem; }
 table.crit th, table.crit td { padding: 9px 12px; border-top: 1px solid var(--line); text-align: start; vertical-align: top; }
 table.crit th { background: #fafbfc; border-top: none; font-weight: 700; }
 .stars { color: #f79009; letter-spacing: 2px; }
+.nav-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+.btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: .92rem; padding: 12px 22px; border-radius: 10px; }
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
 footer { text-align: center; color: #98a2b3; font-size: .78rem; padding: 26px 16px 40px; }
 @media (max-width: 640px) { .kv { grid-template-columns: 1fr; gap: 2px 0; } .kv dt { margin-top: 8px; } }
